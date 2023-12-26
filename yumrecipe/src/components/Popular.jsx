@@ -12,14 +12,20 @@ function Popular() {
   },[]);
 
   const getPopular = async () => {
-    try{
+    try {
       const api = await fetch (`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
+      
+      if(!api.ok) {
+        throw new Error('Failed to fetch any data');
+      }
+      
       const data = await api.json();
       setPopular(data.recipes);
-      console.log('Data:', data);
+      setLoading(false);
 
   } catch (error) {
       console.error('Error:', error);
+      setLoading(false);
   }
 };
 
@@ -28,16 +34,20 @@ return (
     <Wrapper>
       <h3>Popular Picks</h3>
 
-      <Splide>
-      {popular && popular.map((recipe) => (
-          <SplideSlide key={recipe.id}>
-            <Card >
-              <p>{recipe.title}</p>
-              <img src={recipe.image} alt={recipe.title} />
-            </Card>
-        </SplideSlide>
-      ))}
-      </Splide>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <Splide>
+          {popular && popular.map((recipe) => (
+            <SplideSlide key={recipe.id}>
+              <Card>
+                <p>{recipe.title}</p>
+                <img src={recipe.image} alt={recipe.title} />
+              </Card>
+            </SplideSlide>
+          ))}
+        </Splide>
+      )}
     </Wrapper>
   </div>
 );
