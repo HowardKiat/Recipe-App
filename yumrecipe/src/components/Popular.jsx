@@ -27,27 +27,29 @@ function Popular() {
     }
   };
 
-  // Initialize Splide with some basic settings
-  const splideOptions = {
-    type: 'slide', // Set to 'fade' if you want a fade effect
-    heightRatio: 0.5, // Adjust the slider height as needed
-    pagination: false, // Set to true if you want pagination
-  };
-
   return (
     <div>
       <Wrapper>
         <h3>Popular Picks</h3>
 
-        <Splide options={splideOptions}>
-          {popular && popular.map((recipe) => (
+        <Splide options={{
+        // Like CSS for splides customizable
+          perPage: 3,
+          arrows: false,
+          pagination: true,
+          drag: 'free',
+          gap: "5rem",
+        }}
+      >
+          {popular.map((recipe) => (
             <SplideSlide key={recipe.id}>
               <Card>
                 <p>{recipe.title}</p>
-                <img src={recipe.image} alt={recipe.title} onError={(e) => console.error('Image error:', e)} />
+                <img src={recipe.image} alt={recipe.title} onError={(e) => console.error('Image loading error:', e)} />
+                <Gradient />
               </Card>
             </SplideSlide>
-            ))}
+          ))}
         </Splide>
       </Wrapper>
     </div>
@@ -62,13 +64,46 @@ const Card = styled.div`
   min-height: 25rem;
   border-radius: 2rem;
   overflow: hidden;
+  position: relative;
 
   img {
     border-radius: 2rem;
-    max-width: 100%; // Set the maximum width for the image
-    max-height: 15rem; // Set the maximum height for the image
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+
+  }
+
+  p {
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    bottom: 4%;
+    transform: translate(-50%, 0%);
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 600;
+    width: 100%
+    height: 40%
+    
   }
 `;
+
+const Gradient = styled.div`
+  z-index: 3;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0));
+`
+
+
+
 
 export default Popular;
