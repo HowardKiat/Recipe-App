@@ -13,14 +13,22 @@ function Popular() {
 
   const getPopular = async () => {
     try {
-      const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
+      const check = localStorage.getItem('popular');
 
-      if (!api.ok) {
-        throw new Error('Failed to fetch data');
+      if (check) {
+        setPopular(JSON.parse(check));
+      } else {
+        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
+        
+        if (!api.ok) {
+          throw new Error('Failed to fetch data');
+        }
+
+        const data = await api.json();
+
+        localStorage.setItem('popular', JSON.stringify(data.recipes));
+        setPopular(data.recipes);
       }
-
-      const data = await api.json();
-      setPopular(data.recipes);
     } catch (error) {
       console.error('Error:', error);
       // Handle the error, e.g., show an error message to the user
