@@ -88,7 +88,7 @@ const Card = styled.div`
     position: absolute;
     z-index: 10;
     left: 50%;
-    bottom: 4%;
+    bottom: 10%;
     transform: translate(-50%, 0%);
     color: white;
     text-align: center;
