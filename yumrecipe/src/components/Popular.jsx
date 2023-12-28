@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "@splidejs/splide/dist/css/splide.min.css"; 
 // import '../../src/splide-default.min.css';
+require('dotenv').config();
+
 
 function Popular() {
   const [popular, setPopular] = useState([]);
