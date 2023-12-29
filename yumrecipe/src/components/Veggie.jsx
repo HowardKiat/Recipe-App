@@ -17,7 +17,7 @@ function Veggie() {
       if (check) {
         setVeggie(JSON.parse(check));
       } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
+        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=12&tags=vegetarian`);
         
         if (!api.ok) {
           throw new Error('Failed to fetch data');
@@ -41,7 +41,7 @@ function Veggie() {
 
       <Splide options={{
       // Like CSS for splides customizable
-        perPage: 3,
+        perPage: 4,
         arrows: false,
         pagination: true,
         drag: 'free',
