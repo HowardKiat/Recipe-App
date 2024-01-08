@@ -9,14 +9,21 @@ function Search() {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log('Input:', input);
     navigate('/searched/' + input);
   };
 
   return (
     <FormStyle onSubmit={submitHandler}>
       <div>
-        <FaSearch></FaSearch>
-        <input onChange={(e) => setInput(e.target.value)} type="text" value={input} />
+        <FaSearch className="search-icon" />
+        <input 
+          id ="searchInput"
+          name="searchInput"
+          onChange={(e) => setInput(e.target.value)}
+          type="text" 
+          value={input} 
+          />
       </div>
     </FormStyle>
   );
@@ -42,11 +49,12 @@ const FormStyle = styled.form`
     width: 100%;
   }
 
-  svg {
+  .search-icon {
     position: absolute;
     top: 50%;
-    left: 0%;
-    transform: translate(100%, -50%);
+    left: 10px; /* Adjust this value as needed */
+    transform: translateY(-50%);
+    color: white; /* Set the icon color */
   }
 `;
 
