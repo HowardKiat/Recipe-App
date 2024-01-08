@@ -1,23 +1,25 @@
-import styled from 'styled-components';
-import { useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import styled from "styled-components";
+import { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function Search() {
-
   const [input, setInput] = useState("");
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
-  }
-  
+    navigate('/searched/' + input);
+  };
+
   return (
-    <FormStyle onSumbit={submitHandler}>
+    <FormStyle onSubmit={submitHandler}>
       <div>
-        <FaSearch></FaSearch> 
-          <input onChange={(e) => setInput(e.target.value)} type="text" value={input} />
+        <FaSearch></FaSearch>
+        <input onChange={(e) => setInput(e.target.value)} type="text" value={input} />
       </div>
     </FormStyle>
-  )
+  );
 }
 
 const FormStyle = styled.form`
@@ -26,7 +28,7 @@ const FormStyle = styled.form`
 
   div {
     width: 100%;
-    position: relative; /* Add this line to ensure proper positioning */
+    position: relative;
   }
 
   input {
@@ -44,9 +46,8 @@ const FormStyle = styled.form`
     position: absolute;
     top: 50%;
     left: 0%;
-    transform: translate(100%, -50%); /* Fix the typo here */
+    transform: translate(100%, -50%);
   }
-`
+`;
 
-
-export default Search
+export default Search;
