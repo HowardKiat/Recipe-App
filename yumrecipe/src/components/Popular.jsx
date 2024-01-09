@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import "@splidejs/splide/dist/css/splide.min.css"; 
+import { Link } from "react-router-dom";
 // import '../../src/splide-default.min.css';
 
 
@@ -53,9 +54,11 @@ function Popular() {
           {popular.map((recipe) => (
             <SplideSlide key={recipe.id}>
               <Card>
-                <p>{recipe.title}</p>
-                <img src={recipe.image} alt={recipe.title} onError={(e) => console.error('Image loading error:', e)} />
-                <Gradient />
+                <Link to={"/recipe/" + recipe.id}>
+                  <p>{recipe.title}</p>
+                  <img src={recipe.image} alt={recipe.title} onError={(e) => console.error('Image loading error:', e)} />
+                  <Gradient />
+                </Link>
               </Card>
             </SplideSlide>
           ))}
