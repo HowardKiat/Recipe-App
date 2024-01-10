@@ -11,7 +11,7 @@ function Cuisine() {
 
   const getCuisine = async (name) => {
     try {
-      const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}&number=12`);
+      const response = await fetch(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}&number=9`);
       
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

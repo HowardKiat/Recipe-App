@@ -20,7 +20,7 @@ function Popular() {
       if (check) {
         setPopular(JSON.parse(check));
       } else {
-        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=12`);
+        const api = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`);
         
         if (!api.ok) {
           throw new Error('Failed to fetch data');
